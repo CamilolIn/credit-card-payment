@@ -59,5 +59,7 @@
             <li>Redux hooks</li>
             <li>MUI (Material ui)</li>
             <li>stripe (Validacion de pagos)</li>
+            <li>Testing Library</li>
+            <li>Jest</li>
         </ul>
 </div>
