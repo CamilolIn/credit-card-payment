@@ -14,7 +14,6 @@ const Product = ({ product }) => {
   const { name, brand, productValue, urlImg, index } = product
 
   const onHandleAddItem = () => {
-    console.log('herrrrre')
     dispatch(addProduct(product))
   }
 

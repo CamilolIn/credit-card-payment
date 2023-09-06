@@ -7,12 +7,15 @@ export const carSlice = createSlice({
   },
   reducers: {
     addProduct: (state, action) => {
-      console.log(action.payload)
       state.products.push(action.payload)
     },
+    deleteProduct: (state, action) => {
+      const result = state.products.filter((product) => product.id != action.payload);
+      state.products = result;
+    }
   },
 })
 
-export const { addProduct } = carSlice.actions
+export const { addProduct, deleteProduct } = carSlice.actions
 
 export default carSlice.reducer
