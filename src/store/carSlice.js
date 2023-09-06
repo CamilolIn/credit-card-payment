@@ -7,10 +7,24 @@ export const carSlice = createSlice({
   },
   reducers: {
     addProduct: (state, action) => {
-      state.products.push(action.payload)
+      const product = action.payload
+      if (state.products.length === 0) {
+        state.products.push({ ...product, count: 1 })
+      } else {
+        const { id } = product;
+        const indexProduct = state.products.findIndex((product) => product.id === id);
+        if (indexProduct >= 0) {
+          const productExist = state.products.find((product) => product.id === id);
+          const count = productExist.count += 1;
+          const value = productExist.productValue * count
+          state.products[indexProduct] = { ...productExist, count, productValue: value }
+        } else {
+          state.products.push({ ...product, count: 1 })
+        }
+      }
     },
     deleteProduct: (state, action) => {
-      const result = state.products.filter((product) => product.id != action.payload);
+      const result = state.products.filter((product) => product.id !== action.payload);
       state.products = result;
     }
   },

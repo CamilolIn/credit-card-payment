@@ -1,20 +1,20 @@
 import { useContext, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { IconButton, useTheme, Box } from '@mui/material'
-import { ColorMode, colorsTheme } from '../../theme';
+import { ColorMode } from '../../theme';
 import LightModeOutlined from '@mui/icons-material/LightModeOutlined';
 import DarkModeOutlined from '@mui/icons-material/DarkModeOutlined';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge from '@mui/material/Badge';
 import logo from '../../Assets/images/LogoClaro.png';
 import SwipeDrawer from '../../components/SwipeableDrawer';
+import { Link } from 'react-router-dom';
 
 
 
 const NavBar = () => {
   const count = useSelector((state) => state.carProducts.products);
   const theme = useTheme();
-  const colors = colorsTheme(theme.palette.mode);
   const colorMode = useContext(ColorMode)
   const [drawer, setDrawer] = useState(false)
 
@@ -26,7 +26,9 @@ const NavBar = () => {
     <Box display="flex" justifyContent="space-between" p={2} >
       {/* box to hamburguer menu */}
       <Box display="flex" >
-        <img src={logo} alt="Logo" width={40} />
+        <Link to={"/"}>
+          <img src={logo} alt="Logo" width={40} />
+        </Link>
       </ Box>
       {/* box to icons users */}
       <Box Box display="flex" >

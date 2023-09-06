@@ -8,25 +8,39 @@ import { Box, Button, Divider, IconButton, List, ListItem, ListItemButton, ListI
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ClearIcon from '@mui/icons-material/Clear';
+import { addOrder } from '../../store/orderSlice';
+import { useNavigate } from 'react-router-dom';
 
 const SwipeDrawer = ({ drawer, toggleDrawer }) => {
-  const [totalPrice, setTotalPrice] = useState(0)
+
+  let navigate = useNavigate();
+
   const theme = useTheme();
   const colors = colorsTheme(theme.palette.mode);
+
+  const [totalPrice, setTotalPrice] = useState(0);
   const cartProducts = useSelector((state) => state.carProducts.products);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (cartProducts.length > 0) {
+      let newTotalPrice = 0
+      cartProducts.map((product) => {
+        newTotalPrice += product.productValue;
+      })
+      setTotalPrice(newTotalPrice);
+    }
+  }, [cartProducts])
+
   const onHandleRemoveItem = (id) => {
     dispatch(deleteProduct(id))
   }
 
-  useEffect(() => {
-    if (cartProducts.length > 0) {
-      cartProducts.map((product) => {
-        let newTotalPrice = totalPrice + product.productValue;
-        setTotalPrice(newTotalPrice);
-      })
-    }
-  }, [cartProducts])
+  const onHandleOrder = () => {
+    dispatch(addOrder([cartProducts, totalPrice]))
+    toggleDrawer();
+    navigate('/checkout');
+  }
 
   const listShoppingCart = () => (
     <Box>
@@ -84,6 +98,7 @@ const SwipeDrawer = ({ drawer, toggleDrawer }) => {
         : listShoppingCart()}
       <Box marginTop="auto" alignSelf="center" marginBottom={3}>
         <Button
+          onClick={onHandleOrder}
           sx={{
             backgroundColor: colors.blueOk[500]
           }}
