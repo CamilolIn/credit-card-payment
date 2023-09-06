@@ -22,24 +22,24 @@
     La aplicacion fue diseñada First Movile con lo cual cierve para una pantalla como referencia Iphone SE.
 
 <div>
-    <img src='./ReadmeAssets/addProduct.png'></img>
+    <img src='./readmeAssets/addProduct.png'></img>
 </div>
     producto en el carrito
 <div>
-    <img src='./ReadmeAssets/cart.png'></img>
+    <img src='./readmeAssets/cart.png'></img>
 </div>
     Al momento de ir a la pasarela de pagos el metodo de pago por defecto es una tarjeta de credito para efectos practicos se toma como ejemplo la tardjeta numero 4242 4242 4242 4242 con cualquier fecha posterior a la fecha actual y cualquier CVC.
 <div>
-    <img src='./ReadmeAssets/delivery.png'></img>
+    <img src='./readmeAssets/delivery.png'></img>
 </div>
     En dado caso de error si la tarjeta no cumple con los parametros esta mostrara un PopUp con la informacion del error. 
     Y si la compra es exitosa muestra un PopUp exitoso.
 <div>
-    <img src='./ReadmeAssets/creditCartNotOk.png'></img>
+    <img src='./readmeAssets/creditCartNotOk.png'></img>
 </div>
 
 <div>
-    <img src='./ReadmeAssets/creditCarOk.png'></img>
+    <img src='./readmeAssets/creditCarOk.png'></img>
 </div>
 </p>
 
