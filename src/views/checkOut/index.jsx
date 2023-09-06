@@ -3,8 +3,12 @@ import { loadStripe } from "@stripe/stripe-js";
 import DeliveryCard from "../../components/deliveryCard";
 import { Alert, Box, Button, Divider, Grid, List, ListItem, ListItemButton, ListItemText, Snackbar, Typography, useTheme } from "@mui/material";
 import { colorsTheme } from "../../theme";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import { deleteOrder } from "../../store/orderSlice";
+import { cleanProduct } from '../../store/carSlice';
+
 
 const stripePromise = loadStripe("pk_test_51NnKHsFJ0h1X9x3NKJc6s8iVZvynZ7Ls5d5UfY2xAq7CiFLcW4SBMplJP2kkHGZkdjNHNYAhcsEMJtUBcdDEdPvM00HVP1LEHJ");
 
@@ -15,7 +19,9 @@ const Wrapper = () => (
 )
 
 const CheckOut = () => {
-
+  const cartProducts = useSelector((state) => state.carProducts.products);
+  const dispatch = useDispatch();
+  let navigate = useNavigate();
   const theme = useTheme();
   const colors = colorsTheme(theme.palette.mode);
   const stripe = useStripe();
@@ -52,16 +58,21 @@ const CheckOut = () => {
         message: "Se ha creado el metodo correctamente",
         type: "success"
       })
+      console.log(cartProducts)
+      setTimeout(()=>{
+        navigate('/');
+        dispatch(deleteOrder())
+        dispatch(cleanProduct())
+      }, 1000)
     }
   }
-
   const handleClose = () => {
     setPopUp({
       ...popUp,
       open: false
     })
   }
-
+  console.log(productsOrder)
   return (
     <Box>
       {order
@@ -82,7 +93,7 @@ const CheckOut = () => {
           </DeliveryCard>
           <DeliveryCard deliveryNumber={2} deliveryTitle="Your Order">
             <List>
-              {productsOrder.map((product, index) => (
+              {productsOrder && [].map((product, index) => (
                 <>
                   <ListItem key={product.id} >
                     <img

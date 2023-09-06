@@ -11,7 +11,6 @@
     "@stripe/react-stripe-js": "^2.1.2",
     "@stripe/stripe-js": "^2.1.2",
     "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "notistack": "^3.0.1",
     "react": "^18.2.0",
@@ -44,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/react": "^14.0.0"
   }
 }

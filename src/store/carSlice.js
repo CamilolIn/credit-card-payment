@@ -26,10 +26,14 @@ export const carSlice = createSlice({
     deleteProduct: (state, action) => {
       const result = state.products.filter((product) => product.id !== action.payload);
       state.products = result;
+    },
+
+    cleanProduct: (state, action) => {
+      state.products = [];
     }
   },
 })
 
-export const { addProduct, deleteProduct } = carSlice.actions
+export const { addProduct, deleteProduct, cleanProduct } = carSlice.actions
 
 export default carSlice.reducer
