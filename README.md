@@ -1,7 +1,7 @@
 <h1>Credit Card Payment</h1>
 
 <div>
-    <img src='./ReadmeAssets/home.png'></img>
+    <img src='./readmeAssets/home.png'></img>
 </div>
 
 
